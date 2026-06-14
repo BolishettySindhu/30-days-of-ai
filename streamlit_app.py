@@ -5,7 +5,7 @@ st.title(":material/smart_toy: Hello, Cortex!")
 
 client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
-model = "claude-3-5-sonnet-20241022"
+model = "claude-sonnet-4-5"
 prompt = st.text_input("Enter your prompt:")
 
 if st.button("Generate Response"):
