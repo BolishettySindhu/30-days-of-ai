@@ -1,23 +1,18 @@
 import streamlit as st
-import anthropic
+import google.generativeai as genai
 
 st.title(":material/smart_toy: Hello, Cortex!")
 
-client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+model = genai.GenerativeModel("gemini-1.5-flash")
 
-model = "claude-sonnet-4-5"
 prompt = st.text_input("Enter your prompt:")
 
 if st.button("Generate Response"):
     if prompt:
         with st.spinner("Generating response..."):
-            message = client.messages.create(
-                model=model,
-                max_tokens=1024,
-                messages=[{"role": "user", "content": prompt}]
-            )
-            response = message.content[0].text
-            st.write(response)
+            response = model.generate_content(prompt)
+            st.write(response.text)
     else:
         st.warning("Please enter a prompt first.")
 
