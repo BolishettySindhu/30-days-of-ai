@@ -7,7 +7,7 @@ genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 def call_llm(prompt_text: str) -> str:
     """Call Gemini LLM."""
-    model = genai.GenerativeModel("gemini-2.5-flash")
+   model = genai.GenerativeModel("gemini-2.0-flash-lite")
     response = model.generate_content(prompt_text)
     return response.text
 
